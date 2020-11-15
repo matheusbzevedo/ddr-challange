@@ -1,22 +1,22 @@
 import { Module } from '@nestjs/common';
-import { GravacoesModule } from './gravacoes/gravacoes.module';
-import { TabulacoesModule } from './tabulacoes/tabulacoes.module';
+import { GravacaoModule } from './gravacao/gravacao.module';
+import { TabulacaoModule } from './tabulacao/tabulacao.module';
 import { CronService } from './cron/cron.service';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ConfigService } from './config/config.service';
-import { KnexModule } from '@nestjsplus/knex';
-import { ConfigModule } from './config/config.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 
 @Module({
   imports: [
-    GravacoesModule,
-    TabulacoesModule,
-    ScheduleModule.forRoot(),
-    KnexModule.registerAsync({
-      useExisting: ConfigService,
+    MongooseModule.forRoot('mongodb+srv://admin:YbTQHfGEeCVh1Fp9@cluster0.q1v50.mongodb.net/ddrchallenge?retryWrites=true&w=majority',{
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
     }),
-    ConfigModule
+    GravacaoModule,
+    TabulacaoModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [],
   providers: [CronService],

@@ -1,5 +1,4 @@
-export class CriarTabulacoesDTO {
-  readonly _id: string;
+export class CriarTabulacaoDto {
   readonly nomeCliente: string;
   readonly protocolo: string;
   readonly dataAtendimento: Date;
